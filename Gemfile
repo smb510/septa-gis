@@ -6,9 +6,13 @@ gem 'anjlab-bootstrap-rails', ">= 2.2", :require => "bootstrap-rails"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'json'
+group :development do
+  gem 'sqlite3'
+end
 
-#gem 'sqlite3'
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 gem 'thin'
 # Gems used only for assets and not required
 # in production environments by default.

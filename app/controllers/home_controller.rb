@@ -8,4 +8,5 @@ class HomeController < ApplicationController
     
     render :json => @incidents
   end
+  
 end

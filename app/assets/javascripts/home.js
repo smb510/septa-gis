@@ -51,6 +51,7 @@ $(document).ready(function() {
 			}
 		});
 		window.superSpecialMap.addLayer(merkers);
+		$("#layers").html(window.superSpecialMap.layers)
 	});
 
 	// add the rail lines
@@ -65,6 +66,9 @@ $(document).ready(function() {
 			style: astyle
 		}).addTo(window.superSpecialMap);
 	});
+
+
+	
 
 	/*$.getScript("stations.json", function() {
 		
