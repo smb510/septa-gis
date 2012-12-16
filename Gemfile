@@ -7,8 +7,8 @@ gem 'anjlab-bootstrap-rails', ">= 2.2", :require => "bootstrap-rails"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'json'
 
-gem 'sqlite3'
-
+#gem 'sqlite3'
+gem 'pg'
 gem 'thin'
 # Gems used only for assets and not required
 # in production environments by default.
