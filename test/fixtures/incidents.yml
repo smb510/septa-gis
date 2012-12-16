@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2012-11-27
+  time: 2012-11-27 17:02:39
+  location: MyString
+  XCoord: 9.99
+  YCoord: 9.99
+  arrest: false
+
+two:
+  date: 2012-11-27
+  time: 2012-11-27 17:02:39
+  location: MyString
+  XCoord: 9.99
+  YCoord: 9.99
+  arrest: false

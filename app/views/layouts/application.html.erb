@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SEPTAGis</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js" type="text/javascript" charset="utf-8"></script>
+
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+</head>
+<body  style="height: 700px;">
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <a class="brand" href="/">SEPTA GIS</a>
+	    <ul class="nav">
+	      <li class="active"><a href="#">Home</a></li>
+	      <li><%=link_to "Chart", "/chart"%></li>
+	      <li><a href="#">Something Else</a></li>
+	    </ul>
+	  </div>
+	</div>
+<%= yield %>
+
+</body>
+</html>
