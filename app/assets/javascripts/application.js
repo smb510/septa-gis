@@ -17,4 +17,4 @@
 //= require modestmaps.min
 //= require leaflet.markercluster
 //= require leaflet.label
-//= require Control.BingGeocoder
+//=
