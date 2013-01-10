@@ -56,9 +56,17 @@ $(document).ready(function() {
 		var merkers = new L.MarkerClusterGroup();
 		d.forEach(function(obj, index, array) {
 			if (obj.arrest !== true && obj.YCoord !== null && obj.XCoord !== null && bounds.contains(new L.LatLng(obj.YCoord, obj.XCoord))) {
-				labelString = 
 				
-				var marker = L.marker([obj.YCoord, obj.XCoord]).bindLabel(obj.date + " at " + obj.time);
+				
+				if (obj.time != null)
+				{
+				var date = obj.time.split("T");
+				}
+				else
+				{
+					date = ["date was null", "time was null"]
+				}
+				var marker = L.marker([obj.YCoord, obj.XCoord]).bindLabel("On " +  date[0] + " at " + date[1].replace("Z", ""));
 				merkers.addLayer(marker);
 				window.currentMarkers.push(marker);
 			}
