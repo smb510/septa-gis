@@ -8,6 +8,7 @@ gem 'anjlab-bootstrap-rails', ">= 2.2", :require => "bootstrap-rails"
 gem 'json'
 group :development do
   gem 'sqlite3'
+  gem 'meta_request', '0.2.1'
 end
 
 group :production do

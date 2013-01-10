@@ -20,16 +20,27 @@ var reloadPoints = function(e) {
 	}
 
 
-$(document).ready(function() {
+var getFoursquare = function(e)
+{
+	var map = window.superSpecialMap;
+	
+	$.ajax({
+		url : "https://api.foursquare.com/v2/venues/search",
+	});
 	
 	
 	
-	
+}
+
+$(document).ready(function() {	
+	var bingGeocoder = new L.Control.BingGeocoder('AkmR3Bv-1zDyu8CWVHNZLZCUuYcpWOlv_rDeptKOk5P_sGAAudmNoD0sN2KVJVAA');
 	var map = L.map("map_canvas").setView([39.95, -75.2], 9)
 	L.tileLayer('http://{s}.tile.cloudmade.com/72C96B4D077B45E7BDCF70917FE311DB/997/256/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; OpenStreetMap',
 		maxZoom: 18
 	}).addTo(map);
+	
+	map.addControl(bingGeocoder);
 
 	//map.on('move', reloadPoints);
 	//map.on('zoom', reloadPoints);
@@ -40,11 +51,14 @@ $(document).ready(function() {
 		url: "/incidents",
 		context: map
 	}).success(function(d, t, j) {
+		console.log(d);
 		window.superSpecialData = d;
 		var bounds = window.superSpecialMap.getBounds();
 		var merkers = new L.MarkerClusterGroup();
 		d.forEach(function(obj, index, array) {
 			if (obj.arrest !== true && obj.YCoord !== null && obj.XCoord !== null && bounds.contains(new L.LatLng(obj.YCoord, obj.XCoord))) {
+				labelString = 
+				
 				var marker = L.marker([obj.YCoord, obj.XCoord]).bindLabel(obj.date + " at " + obj.time);
 				merkers.addLayer(marker);
 				window.currentMarkers.push(marker);
@@ -67,13 +81,5 @@ $(document).ready(function() {
 		}).addTo(window.superSpecialMap);
 	});
 
-
-	
-
-	/*$.getScript("stations.json", function() {
-		
-		
-		L.geoJson(stations).addTo(window.superSpecialMap);
-	});*/
 
 });

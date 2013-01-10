@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$primary: #58e000;
+$secondary: #00ab6f;
+$tertiary: #ff5300;
+$quaternary: e9003a;
+
 .map_container
 {
 	width: 90%;
@@ -10,3 +15,19 @@
 	height: 500px;
 }
 
+
+.anavbar-inner {
+  background-color: $primary; /* fallback color, place your own */
+
+  /* Gradients for modern browsers, replace as you see fit */
+  background-image: -moz-linear-gradient(top, $primary, #58e003) !important;
+  background-image: -ms-linear-gradient(top, $primary, #58e003) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($primary), to(#58e003)) !important;
+  background-image: -webkit-linear-gradient(top, $primary, #58e003) !important;
+  background-image: -o-linear-gradient(top, $primary, #58e003) !important;
+  background-image: linear-gradient(top, $primary, #58e003) !important;
+  background-repeat: repeat-x;
+
+  /* IE8-9 gradient filter */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
+}
