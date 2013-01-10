@@ -33,14 +33,13 @@ var getFoursquare = function(e)
 }
 
 $(document).ready(function() {	
-	var bingGeocoder = new L.Control.BingGeocoder('AkmR3Bv-1zDyu8CWVHNZLZCUuYcpWOlv_rDeptKOk5P_sGAAudmNoD0sN2KVJVAA');
 	var map = L.map("map_canvas").setView([39.95, -75.2], 9)
 	L.tileLayer('http://{s}.tile.cloudmade.com/72C96B4D077B45E7BDCF70917FE311DB/997/256/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; OpenStreetMap',
 		maxZoom: 18
 	}).addTo(map);
 	
-	map.addControl(bingGeocoder);
+	
 
 	//map.on('move', reloadPoints);
 	//map.on('zoom', reloadPoints);
