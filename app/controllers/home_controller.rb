@@ -1,8 +1,5 @@
 class HomeController < ApplicationController
-  def index
-    if params[:code] != nil
-      logger.info params[:code]
-    end
+  def indexxs
   end
   def viz
   end
@@ -17,6 +14,14 @@ class HomeController < ApplicationController
       @incidents = Incident.all
     end
     render :json => @incidents
+  end
+  
+  def foursquare_venues
+    foursquare = Foursquare2::Client.new(:client_id => 'KB0YDXHA1DLY0MG0NJBXUEBSZXREXICLKKMNXN5ZXMOXJCYK', :client_secret => 'VY0433CPDAEA00DAXYIY2WXK11IHYIDPHOGLEUQ0KLSQ3J2W')
+    @venues = foursquare.search_venues(:ll => "#{params[:lat]}, #{params[:long]}")
+    logger.info @venues.to_json
+    render :json => @venues
+    
   end
     
   

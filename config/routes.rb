@@ -3,6 +3,8 @@ SEPTAGis::Application.routes.draw do
   get "home/index"
   match "chart" => 'home#viz'
   match "incidents" => "home#incidents"
+  
+  match "venues" => 'home#foursquare_venues'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
