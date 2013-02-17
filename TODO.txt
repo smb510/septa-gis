@@ -1,0 +1,7 @@
+Put Schools on Map
+Get Numbers of Incidents vs Numbers of Schools
+Fix 4sq bug
+Population density by census tracts
+	-Import Borders
+	-Put numbers inside borders
+Turning Layers on and off
