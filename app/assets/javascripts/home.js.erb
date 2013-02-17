@@ -107,7 +107,36 @@ $(document).ready(function() {
 		var layer = L.geoJson(lines, {
 			style: astyle
 		}).addTo(window.superSpecialMap);
+		
+	/*
+	To Add KML!
+	Convert kml file to GeoJSON here
+	
+	put your converted file (should be in .json file format)
+	duplicate this code with a different variable name and file name of course:
+	
+	$.getScript("lines.json", function() {
+		var astyle = {
+			"color": "#990000",
+			"weight": 2,
+			"opacity": 1
+		}
+
+		var layer = L.geoJson(lines, {
+			style: astyle
+		}).addTo(window.superSpecialMap);
+	
+	
+	
+	
+	*/	
+		
+		
+		
+		
 	});
+	
+
 
 getFoursquare();
 });
