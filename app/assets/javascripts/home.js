@@ -32,7 +32,7 @@ var getFoursquare = function(e)
 	
 }
 
-$(document).ready(function() {	
+$(document).ready(function() {
 	var map = L.map("map_canvas").setView([39.95, -75.2], 9)
 	L.tileLayer('http://{s}.tile.cloudmade.com/72C96B4D077B45E7BDCF70917FE311DB/997/256/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; OpenStreetMap',
