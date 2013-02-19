@@ -46,6 +46,8 @@ GEM
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
       hashie (~> 1.0)
+    geokit (1.6.5)
+      multi_json
     hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.1)
@@ -124,6 +126,7 @@ PLATFORMS
 DEPENDENCIES
   anjlab-bootstrap-rails (>= 2.2)
   foursquare2
+  geokit
   jquery-rails
   json
   meta_request (= 0.2.1)

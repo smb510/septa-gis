@@ -4,6 +4,8 @@ SEPTAGis::Application.routes.draw do
   match "chart" => 'home#viz'
   match "incidents" => "home#incidents"
   
+  match "count_incidents" => "home#count_incidents"
+  
   match "venues" => 'home#foursquare_venues'
 
   # The priority is based upon order of creation:

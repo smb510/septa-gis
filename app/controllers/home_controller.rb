@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def indexxs
+  def index
   end
   def viz
   end
@@ -23,6 +23,28 @@ class HomeController < ApplicationController
     render :json => @venues
     
   end
+  
+  
+  def count_incidents
+    @incidents = Incident.all
+    @distances = []
+    @lat = params["latitude"].to_f
+    @long = params["longitude"].to_f
+    @total_incidents = 0
     
+    
+    
+    @incidents.each{|incident|
+      point_a = GeoKit::LatLng.new(@lat, @long)
+      point_b = GeoKit::LatLng.new(incident.YCoord.to_f, incident.XCoord.to_f)
+      dist = point_a.distance_to(point_b, :units => :miles)
+      if dist < 0.25
+        @total_incidents += 1
+      end
+      
+      
+      }
+    render :json => @total_incidents
+  end
   
 end
