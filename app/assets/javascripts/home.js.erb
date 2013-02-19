@@ -1,67 +1,44 @@
-var reloadPoints = function(e) {
-		if (window.superSpecialData !== undefined) {
-			var map = window.superSpecialMap;
-			//remove the markers
-			window.currentMarkers.forEach(function(o, i, a) {
-				map.removeLayer(o);
-			});
-			window.currentMarkers = [];
-			//add the new ones.
-			var bounds = window.superSpecialMap.getBounds();
-			window.superSpecialData.forEach(function(obj, index, array) {
-				if (obj.arrest !== true && obj.YCoord !== null && obj.XCoord !== null && bounds.contains(new L.LatLng(obj.YCoord, obj.XCoord))) {
-					var marker = L.marker([obj.YCoord, obj.XCoord]);
-					marker.addTo(window.superSpecialMap);
-					window.currentMarkers.push(marker);
-				}
+var getFoursquare = function() {
 
-			});
-		}
+		var center = window.superSpecialMap.getCenter();
+		$.ajax({
+			url: "/venues?lat=" + center.lat + "&long=" + center.lng,
+			context: window.superSpecialMap,
+			success: function(data, textStatus, jqXHR) {
+
+				var fourIcon = new L.icon({
+					iconUrl: <%= '"' + image_path("foursquare-icon.png") + '"' %> ,
+					iconSize: [24, 24]
+
+				});
+				var map = window.superSpecialMap;
+				var places = data["groups"][0];
+				places.items.forEach(function(object, index, array) {
+
+					var location = L.marker(new L.LatLng(object.location.lat, object.location.lng), {
+						icon: fourIcon
+					}).bindLabel(object.name + "->" + object.stats.checkinsCount);
+					map.addLayer(location);
+
+				});
+
+
+
+			}
+		})
+
+
+
 	}
 
-
-var getFoursquare = function()
-{
-	
-	var center = window.superSpecialMap.getCenter();
-	$.ajax({
-		url : "/venues?lat="+ center.lat + "&long=" + center.lng,
-		context : window.superSpecialMap,
-		success : function(data, textStatus, jqXHR)
-		{
-			
-			var fourIcon = new L.icon({
-				iconUrl: <%= '"' + image_path("foursquare-icon.png") + '"' %>,
-				iconSize: [24, 24]
-
-			});
-			var map = window.superSpecialMap;
-			var places = data["groups"][0];
-			places.items.forEach(function(object, index, array)
-			{
-				
-			var location = L.marker(new L.LatLng(object.location.lat, object.location.lng), {icon: fourIcon}).bindLabel(object.name + "->" + object.stats.checkinsCount); 
-			map.addLayer(location);
-		
-			});
-				
-			
-			
-		}
-	})
-	
-	
-	
-}
-
-$(document).ready(function() {	
+$(document).ready(function() {
 	var map = L.map("map_canvas").setView([39.95, -75.2], 9)
 	L.tileLayer('http://{s}.tile.cloudmade.com/72C96B4D077B45E7BDCF70917FE311DB/997/256/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; OpenStreetMap',
 		maxZoom: 18
 	}).addTo(map);
-	
-	
+
+
 
 	//map.on('move', reloadPoints);
 	//map.on('zoom', reloadPoints);
@@ -77,17 +54,14 @@ $(document).ready(function() {
 		var merkers = new L.MarkerClusterGroup();
 		d.forEach(function(obj, index, array) {
 			if (obj.arrest !== true && obj.YCoord !== null && obj.XCoord !== null && bounds.contains(new L.LatLng(obj.YCoord, obj.XCoord))) {
-				
-				
-				if (obj.time != null)
-				{
-				var date = obj.time.split("T");
-				}
-				else
-				{
+
+
+				if (obj.time != null) {
+					var date = obj.time.split("T");
+				} else {
 					date = ["date was null", "time was null"]
 				}
-				var marker = L.marker([obj.YCoord, obj.XCoord]).bindLabel("On " +  date[0] + " at " + date[1].replace("Z", ""));
+				var marker = L.marker([obj.YCoord, obj.XCoord]).bindLabel("On " + date[0] + " at " + date[1].replace("Z", ""));
 				merkers.addLayer(marker);
 				window.currentMarkers.push(marker);
 			}
@@ -107,56 +81,53 @@ $(document).ready(function() {
 		var layer = L.geoJson(lines, {
 			style: astyle
 		}).addTo(window.superSpecialMap);
+		
+	})
+
 	
-	$.getScript("schools.json", function() {
+
+	$.getScript("schools.json", function(){
+		
 		var astyle = {
-			// iconUrl: "http://www.wetherbybeautysalon.com/wp-content/uploads/2012/07/icon_location.png"
-			// iconSize:     [38, 95], // size of the icon
-   //  		shadowSize:   [50, 64], // size of the shadow
-   //  		iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-   //  		shadowAnchor: [4, 62],  // the same for the shadow
-   //  		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-
-			"color": "#800080",
-			"weight": 2,
-			"opacity": 1
+			"color" : "#990000",
+			"weight" : 2,
+			"opacity" : 1
+			
 		}
-
-		var schoolLayer = L.geoJson(school, {
-			style: astyle
-		}).addTo(window.superSpecialMap);
-
-
-
-	/*
-	To Add KML!
-	Convert kml file to GeoJSON here
-	
-	put your converted file (should be in .json file format)
-	duplicate this code with a different variable name and file name of course:
-	
-	$.getScript("lines.json", function() {
-		var astyle = {
-			"color": "#990000",
-			"weight": 2,
-			"opacity": 1
-		}
-
-		var layer = L.geoJson(lines, {
-			style: astyle
-		}).addTo(window.superSpecialMap);
-	
-	
-	
-	
-	*/	
 		
-		
-		
+		var layer = L.geoJson(schools, {style : astyle}).addTo(window.superSpecialMap);
 		
 	});
-	
+
+	/*
+		To Add KML!
+		Convert kml file to GeoJSON here
+
+		put your converted file (should be in .json file format)
+		duplicate this code with a different variable name and file name of course:
+
+		$.getScript("lines.json", function() {
+			var astyle = {
+				"color": "#990000",
+				"weight": 2,
+				"opacity": 1
+			}
+
+			var layer = L.geoJson(lines, {
+				style: astyle
+			}).addTo(window.superSpecialMap);
+
+		})
+		*/
 
 
-getFoursquare();
+
+
+
+
+
+
+	getFoursquare();
 });
+
+
