@@ -47,4 +47,18 @@ class HomeController < ApplicationController
     render :json => @total_incidents
   end
   
+  
+  
+  
+  def get_bounding_box
+    #find range of latitudes and range of longitudes. O(n)
+    
+  end
+  
+  def k_means
+  end
+  
+  def average_decorrelation
+  end
+  
 end

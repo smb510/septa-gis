@@ -4,14 +4,14 @@
   <title>SEPTAGis</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
 <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="http://code.highcharts.com/highcharts.src.js"></script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
 </head>
-<body  style="height: 700px;">
-	<div class="navbar">
+<body  style="height: 700px; padding-top:40px;">
+	<div class="navbar navbar-fixed-top navbar-inverse">
 	  <div class="navbar-inner">
 	    <a class="brand" href="/">SEPTA GIS</a>
 	    <ul class="nav">

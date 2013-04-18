@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.enumerable
 //= require_tree .
 //= require twitter/bootstrap
 //= require modestmaps.min
 //= require leaflet.markercluster
 //= require leaflet.label
+//= require jquery.tufte-graph
+//= require raphael
 //=

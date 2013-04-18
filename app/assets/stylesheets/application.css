@@ -15,4 +15,5 @@
  *= require MarkerCluster.Default
  *= require MarkerCluster.Default.ie
  *= require leaflet.label
+ *= require tufte-graph
  */
